@@ -1,4 +1,4 @@
-package Merge_and_Count;
+package proyectoADA;
 
 public class Ciudad {
 
@@ -8,7 +8,9 @@ public class Ciudad {
 		this.id = id;
 		nombre = name;
 	}
-	
+	public String toString() {
+		return nombre;
+	}
 	
 	public static void main(String[] args) {
 		// TODO Auto-generated method stub

@@ -1,4 +1,4 @@
-package Merge_and_Count;
+package proyectoADA;
 
 public class Turista {
 

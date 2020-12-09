@@ -1,8 +1,6 @@
-package Merge_and_Count;
+package proyectoADA;
 import java.util.ArrayList;
-import java.util.Arrays;
-
-import com.sun.tools.javac.code.Attribute.Array; 
+import java.util.Arrays; 
 public class CountingInversions2 {
 	  
 	
