@@ -216,6 +216,14 @@ public class CountingInversions2 {
 	    	return places;
 	    	
 	    }
+	    public  String[] recomendar(ArrayList<Ciudad> lugares) {
+	    	Ciudad[] lugaresI = new Ciudad[lugares.size()];
+	    	for(int i = 0; i< lugaresI.length; i++) {
+	    		lugaresI[i] = lugares.get(i);
+	    	}
+	    	ArrayList<Integer> idsRecomendados = main_second(lugaresI);
+	    	return retornarLugares(idsRecomendados);
+	    }
 	    public static void main(String[] args) { 
 	    	
 	    	Ciudad[] lugares = new Ciudad[7];
