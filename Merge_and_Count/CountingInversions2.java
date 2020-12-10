@@ -4,20 +4,20 @@ import java.util.Arrays;
 public class CountingInversions2 {
 	  
 		String[] turisticos = {
-				"0",
-				"1",
-				"2",
-				"3",
-				"4",
-				"5",
-				"6",
-				"7",
-				"8",
-				"9",
-				"10",
-				"11",
-				"12",
-				"13"
+				"lugar0",
+				"lugar1",
+				"lugar2",
+				"lugar3",
+				"lugar4",
+				"lugar5",
+				"lugar6",
+				"lugar7",
+				"lugar8",
+				"lugar9",
+				"lugar10",
+				"lugar11",
+				"lugar12",
+				"lugar13"
 		};
 		int[] road1 = {0,1,2,3,4,5,6,7,8,9,10,11,13};
 		
@@ -69,23 +69,35 @@ public class CountingInversions2 {
 				
 		}
 	    //*************************************************************************
-	    public   void main_second(Ciudad[] lugares) {
+	    public ArrayList<Integer> main_second(Ciudad[] lugares) {
 	    	int items[] = new int[lugares.length];
 	    	for(int i = 0; i < items.length; i++) {
 	    		items[i] = lugares[i].id;
 	    	}
-	    	int[] keys = null;
+	    	int[] keys = new int[lugares.length];
+	    	
 	    	int[] inversions = new int[keys.length];
+	    	
 	    	for(int i = 0; i < roadList.length; i++) {
 	    		keys = cortarGen(roadList[i],items);
 	    		inversions[i] = mergeSortAndCount(keys,0,keys.length);
 	    	}
+	    	int items1[] = copy(items);
 	    	int isUserInversions = mergeSortAndCount(items,0,items.length);
 	    	int idNear = id_list_menor(inversions,isUserInversions);
 	    	int[] nearRoad = roadList[idNear];
-	    	ArrayList<Integer> nearR = toArrayList(nearRoad);
-	    	ArrayList<Integer> complement = complement(nearR, items);
 	    	
+	    	ArrayList<Integer> nearR = toArrayList(nearRoad);
+	    	ArrayList<Integer> complement = complement(nearR, items1);
+	    	return complement;
+	    	
+	    }
+	    public int[] copy(int[]items) {
+	    	int[] list = new int [items.length];
+	    	for(int i = 0; i< items.length; i++) {
+	    		list[i] = items[i];
+	    	}
+	    	return list;
 	    }
 	    ///************************************************************************
 	    // los lugares, aqui se muestran
@@ -174,7 +186,7 @@ public class CountingInversions2 {
 	    //***************************************************************
 	    public static int id_list_menor(int[]inversions, int user_inv) {
 	    	int menor = Math.abs(inversions[0] - user_inv);
-	    	int id_list = -1;
+	    	int id_list = 0;
 	    	for(int i = 0; i < inversions.length; i++) {
 	    		if(menor > Math.abs(user_inv-inversions[i]) ) {
 	    			menor = Math.abs(user_inv-inversions[i]);
@@ -196,27 +208,32 @@ public class CountingInversions2 {
 	    	}
 	    	return original;
 	    }
-	    public static void main(String[] args) { 
-			//int[]list = {1,20,6,4,5};
-	        //System.out.println(mergeSortAndCount(list, 0, list.length - 1)); 
-	    	int[] list_1 = {1,8,4,5,3,1,21,2};
-	    	int m = id_list_menor(list_1, 7);
-	    	System.out.println(m);
-	    	ArrayList<Integer> list_2 = new ArrayList<Integer>(Arrays.asList(1,2,3,4,5));
-	    	int quitar[] = {2,3};
-	    	System.out.println(complement(list_2,quitar)); 
-	    	//************************
-	    	int[] original = {1,3,4,5,3,6,7,9,2};
-	    	int[] items = {2,5,6};
-	    	empaque[] pack = fase1_cortar(original, items);
-	    	for(empaque key: pack) {
-	    		System.out.println(key);
+	    public String[] retornarLugares(ArrayList<Integer>ids) {
+	    	String[] places = new String[ids.size()];
+	    	for(int i = 0; i < ids.size(); i++) {
+	    		places[i] = turisticos[ids.get(i)];
 	    	}
-	    	 ordenarIds(pack);
-	    	System.out.println(Arrays.toString(pack));
+	    	return places;
 	    	
+	    }
+	    public static void main(String[] args) { 
 	    	
+	    	Ciudad[] lugares = new Ciudad[7];
+	    	lugares[0] = new Ciudad("Place0",0); 
+	    	lugares[1] = new Ciudad("Place1",2);
+	    	lugares[2] = new Ciudad("Place2",1);
+	    	lugares[3] = new Ciudad("Place3",4);
+	    	lugares[4] = new Ciudad("Place4",5);
+	    	lugares[5] = new Ciudad("Place5",7);
+	    	lugares[6] = new Ciudad("Place6",9);
+	    	CountingInversions2 m = new CountingInversions2();
+	    	ArrayList<Integer> main = m.main_second(lugares);
+	    	String[] place = m.retornarLugares(main);
 	    	
+	    	System.out.println(Arrays.toString(place));
+	    	for(Integer i : main) {
+	    		System.out.println(i);
+	    	}
 	    }
 	    
 	
