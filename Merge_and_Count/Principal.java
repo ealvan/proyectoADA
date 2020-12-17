@@ -101,7 +101,13 @@ public class Principal extends javax.swing.JFrame {
         jLabel5.setText("Ruta Final");
 
         jList1.setModel(new javax.swing.AbstractListModel<String>() {
+        	CountingInversions2 m12 = new CountingInversions2();
+            String[] recomendaciones = m12.recomendar(lugares);
+            
             String[] strings = { "Volcan", "Catedral1", "Comida" };
+            if (recomendaciones != null) {
+            	strings = recomendaciones;
+            }
             CountingInversions2 m = new CountingInversions2();
             public int getSize() { return strings.length; }
             public String getElementAt(int i) { return strings[i]; }
@@ -218,8 +224,7 @@ public class Principal extends javax.swing.JFrame {
         for(javax.swing.JCheckBox key: list) {
         	if(key.isSelected() == true) {
         		Ciudad any =  new Ciudad(key.getText(),i);
-        		lugares.add(any);
-        		
+        		lugares.add(any);	
         	}
         	i++;
         }
@@ -240,7 +245,7 @@ public class Principal extends javax.swing.JFrame {
     }                                        
 
     private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {                                         
-        // TODO add your handling code here:
+        
     }                                        
 
     private void jTextField2ActionPerformed(java.awt.event.ActionEvent evt) {                                            
