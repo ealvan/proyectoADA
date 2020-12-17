@@ -4,6 +4,23 @@ import java.util.Arrays;
 public class CountingInversions2 {
 	  
 		String[] turisticos = {
+				"Place0",
+				"Place1" ,
+				"Place2",
+				"Place3",
+				"Place4",
+				"Place5",
+				"Place6",
+				"Place7",
+				"Place8",
+				"Place9",
+				"Place10",
+				"Place11",
+				"Place12",
+				"Place13",
+		};
+		/*
+		 * {
 				"Plaza de Armas",
 				"Monasterio de Santa Catalina de Siena",
 				"Catedral de Arequipa y su museo",
@@ -19,6 +36,8 @@ public class CountingInversions2 {
 				"Complejo Arqueológico de Uyo Uyo",
 				"Casa Museo Mario Vargas Llosa",
 		};
+		 * */
+		
 		
 		int[] road1 = {0,1,2,3,4,5,6,7,8,9,10,11,13};
 		
@@ -49,7 +68,7 @@ public class CountingInversions2 {
 	    	for(int i = 0; i < items.length; i++) {
 	    		items[i] = lugares[i].id;
 	    	}
-	    	int[] keys = new int[lugares.length];
+	    	int[] keys = new int[14-lugares.length];
 	    	
 	    	int[] inversions = new int[keys.length];
 	    	
@@ -60,12 +79,12 @@ public class CountingInversions2 {
 	    	int items1[] = copy(items);
 	    	int isUserInversions = mergeSortAndCount(items,0,items.length);
 	    	int idNear = id_list_menor(inversions,isUserInversions);
+	    	System.out.println(idNear);
 	    	int[] nearRoad = roadList[idNear];
 	    	
 	    	ArrayList<Integer> nearR = toArrayList(nearRoad);
 	    	ArrayList<Integer> complement = complement(nearR, items1);
 	    	return complement;
-	    	
 	    }
 	    public int[] copy(int[]items) {
 	    	int[] list = new int [items.length];
@@ -185,15 +204,23 @@ public class CountingInversions2 {
 	    }
 	    public static void main(String[] args) { 
 	    	
-	    	Ciudad[] lugares = new Ciudad[7];
+	    	Ciudad[] lugares = new Ciudad[6];
 	    	lugares[0] = new Ciudad("Place0",0); 
-	    	lugares[1] = new Ciudad("Place1",2);
+	    	lugares[1] = new Ciudad("Place1",7);
 	    	lugares[2] = new Ciudad("Place2",1);
-	    	lugares[3] = new Ciudad("Place3",4);
-	    	lugares[4] = new Ciudad("Place4",5);
-	    	lugares[5] = new Ciudad("Place5",7);
-	    	lugares[6] = new Ciudad("Place6",9);
+	    	lugares[3] = new Ciudad("Place3",10);
+	    	lugares[4] = new Ciudad("Place4",11);
+	    	lugares[5] = new Ciudad("Place5",8);
+	    /*
+	    0 {0,1,2,3,4,5,6,7,8,9,10,11,13};
+		1 {0,6,7,1,4,10,11,13,2,3,5,8,9 };
+		2 {0,1,2,3,4,5,6,7,8,9,10,11,13};
+		3 {0,6,7,1,4,10,11,13,2,3,5,8,9 };
+		4 {10,11,7,1,4,3,8,0,13,2,6,9,5, }; 
+	    */
+	    	
 	    	CountingInversions2 m = new CountingInversions2();
+	    	
 	    	ArrayList<Integer> main = m.main_second(lugares);
 	    	String[] place = m.retornarLugares(main);
 	    	
